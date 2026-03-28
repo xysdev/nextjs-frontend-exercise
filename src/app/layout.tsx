@@ -1,6 +1,12 @@
 import './globals.css';
 
+import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
+
+export const metadata: Metadata = {
+  title: 'Pets | Find your perfect companion',
+  description: 'Browse and filter pets available for adoption.',
+};
 
 const openSans = Open_Sans({
   weight: ['400', '700'],

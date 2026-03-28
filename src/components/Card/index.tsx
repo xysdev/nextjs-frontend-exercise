@@ -4,7 +4,9 @@ import type { Pet } from '@/types/pet';
 
 import styles from './index.module.css';
 
-export function Card({ name, photoUrl, species }: Pick<Pet, 'name' | 'photoUrl' | 'species'>) {
+type CardProps = Pick<Pet, 'name' | 'photoUrl' | 'species'> & { priority?: boolean };
+
+export function Card({ name, photoUrl, species, priority = false }: CardProps) {
   return (
     <article className={styles.container}>
       <div className={styles.imageContainer}>
@@ -14,6 +16,7 @@ export function Card({ name, photoUrl, species }: Pick<Pet, 'name' | 'photoUrl' 
           className={styles.image}
           fill
           sizes="(min-width: 768px) calc((var(--container-width) - 6.4rem) / 3), 150px"
+          priority={priority}
         />
       </div>
       <h3 className={`${styles.petName} h4`}>{name}</h3>
