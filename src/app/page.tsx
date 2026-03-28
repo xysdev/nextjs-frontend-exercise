@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
   return (
     <div>
       <Header />
-      <div className="main">
+      <main className="main">
         <Container>
           <h1>Pets</h1>
 
@@ -35,13 +35,23 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           </Suspense>
 
           <h2>Results</h2>
-          <div className={styles.cardContainer}>
-            {pets.map(pet => (
-              <Card key={pet.id} name={pet.name} photoUrl={pet.photoUrl} species={pet.species} />
-            ))}
-          </div>
+          {pets.length === 0 ? (
+            <p className={styles.emptyState}>No pets found for the selected filter.</p>
+          ) : (
+            <div className={styles.cardContainer}>
+              {pets.map((pet, index) => (
+                <Card
+                  key={pet.id}
+                  name={pet.name}
+                  photoUrl={pet.photoUrl}
+                  species={pet.species}
+                  priority={index < 3}
+                />
+              ))}
+            </div>
+          )}
         </Container>
-      </div>
+      </main>
       <footer className={styles.footer}>
         <Container>
           <p className={styles.footerText}>© 1996 - 2024 ~ Pets B.V.</p>
