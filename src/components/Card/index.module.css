@@ -13,14 +13,14 @@
 
 .image {
   object-position: center;
-  aspect-ratio: 16 / 9;
   object-fit: cover;
-  width: 100%;
   border-radius: 16px;
 }
 
 .imageContainer {
-  flex: 0 1 150px;
+  position: relative;
+  flex: 0 0 150px;
+  aspect-ratio: 16 / 9;
 }
 
 @media (min-width: 768px) {
@@ -29,7 +29,9 @@
     align-items: flex-start;
   }
 
-  .image {
+  .imageContainer {
+    flex: none;
+    width: 100%;
     aspect-ratio: 4 / 3;
   }
 }

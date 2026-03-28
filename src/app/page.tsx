@@ -1,10 +1,13 @@
 import { Card } from '@/components/Card';
 import { Container } from '@/components/Container';
 import { Header } from '@/components/Header';
+import { getPets } from '@/services/pets';
 
 import styles from './page.module.css';
 
-export default function Home() {
+export default async function Home() {
+  const pets = await getPets();
+
   return (
     <div>
       <Header />
@@ -14,9 +17,9 @@ export default function Home() {
 
           <h2>Results</h2>
           <div className={styles.cardContainer}>
-            <Card name="Dann" image="/images/ES0AHRx.jpg" />
-            <Card name="Annemie" image="/images/wt5AGpR.jpg" />
-            <Card name="Daamin" image="/images/cL9Su9q.jpg" />
+            {pets.map((pet) => (
+              <Card key={pet.id} name={pet.name} photoUrl={pet.photoUrl} species={pet.species} />
+            ))}
           </div>
         </Container>
       </div>
