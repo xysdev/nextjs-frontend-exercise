@@ -20,7 +20,8 @@
     "test:watch": "vitest --watch",
     "test:watch:coverage": "vitest --watch --coverage",
     "typecheck": "tsc --noEmit",
-    "zip": "git archive HEAD -o $(basename $PWD).zip && mv $(basename $PWD).zip ../dist"
+    "zip": "git archive HEAD -o $(basename $PWD).zip && mv $(basename $PWD).zip ../dist",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "^16.1.4",
@@ -56,6 +57,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^17.0.0",
     "happy-dom": "20.3.4",
+    "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.8.0",
