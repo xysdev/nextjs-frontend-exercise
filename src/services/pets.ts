@@ -1,8 +1,23 @@
 import { API_BASE_URL } from '@/config/api';
 import type { Pet } from '@/types/pet';
 
-export async function getPets(): Promise<Pet[]> {
-  const res = await fetch(`${API_BASE_URL}/api/pets`, { cache: 'no-store' });
+export type PetQueryParams = {
+  species?: string;
+  sortBy?: string;
+  order?: string;
+};
+
+export async function getPets(params?: PetQueryParams): Promise<Pet[]> {
+  const searchParams = new URLSearchParams();
+
+  if (params?.species) searchParams.set('species', params.species);
+  if (params?.sortBy) searchParams.set('sortBy', params.sortBy);
+  if (params?.order) searchParams.set('order', params.order);
+
+  const query = searchParams.toString();
+  const url = `${API_BASE_URL}/api/pets${query ? `?${query}` : ''}`;
+
+  const res = await fetch(url, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error(`Failed to fetch pets: ${res.status} ${res.statusText}`);
