@@ -1,11 +1,23 @@
 .footer {
-  display: flex;
-  height: 60px;
+  background-color: var(--color-pistachio);
+  padding: 2rem 0;
+}
+
+.footerText {
+  font-size: 1.2rem;
+  color: var(--color-green-tea);
+  text-align: center;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
 }
 
 @media (min-width: 768px) {
   .cardContainer {
-    display: flex;
-    gap: 7rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.2rem;
   }
 }

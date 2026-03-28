@@ -39,9 +39,11 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           </div>
         </Container>
       </div>
-      <div className={styles.footer}>
-        <Container>&nbsp;</Container>
-      </div>
+      <footer className={styles.footer}>
+        <Container>
+          <p className={styles.footerText}>© 1996 - 2024 ~ Pets B.V.</p>
+        </Container>
+      </footer>
     </div>
   );
 }
