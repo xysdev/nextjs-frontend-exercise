@@ -21,7 +21,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
     getPets({ species, sortBy: resolvedSortBy, order: resolvedOrder }),
   ]);
 
-  const speciesOptions = [...new Set(allPets.map((p) => p.species))].sort();
+  const speciesOptions = [...new Set(allPets.map(p => p.species))].sort();
 
   return (
     <div>
@@ -36,15 +36,17 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
           <h2>Results</h2>
           <div className={styles.cardContainer}>
-            {pets.map((pet) => (
+            {pets.map(pet => (
               <Card key={pet.id} name={pet.name} photoUrl={pet.photoUrl} species={pet.species} />
             ))}
           </div>
         </Container>
       </div>
-      <div className={styles.footer}>
-        <Container>&nbsp;</Container>
-      </div>
+      <footer className={styles.footer}>
+        <Container>
+          <p className={styles.footerText}>© 1996 - 2024 ~ Pets B.V.</p>
+        </Container>
+      </footer>
     </div>
   );
 }
