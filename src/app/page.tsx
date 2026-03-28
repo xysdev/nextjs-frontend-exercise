@@ -13,12 +13,9 @@ type SearchParams = Promise<{ species?: string }>;
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   const { species } = await searchParams;
 
-  const [allPets, pets] = await Promise.all([
-    getPets(),
-    getPets({ species }),
-  ]);
+  const [allPets, pets] = await Promise.all([getPets(), getPets({ species })]);
 
-  const speciesOptions = [...new Set(allPets.map((p) => p.species))].sort();
+  const speciesOptions = [...new Set(allPets.map(p => p.species))].sort();
 
   return (
     <div>
@@ -33,7 +30,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
           <h2>Results</h2>
           <div className={styles.cardContainer}>
-            {pets.map((pet) => (
+            {pets.map(pet => (
               <Card key={pet.id} name={pet.name} photoUrl={pet.photoUrl} species={pet.species} />
             ))}
           </div>
