@@ -8,14 +8,17 @@ import { getPets } from '@/services/pets';
 
 import styles from './page.module.css';
 
-type SearchParams = Promise<{ species?: string }>;
+type SearchParams = Promise<{ species?: string; sortBy?: string; order?: string }>;
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
-  const { species } = await searchParams;
+  const { species, sortBy, order } = await searchParams;
+
+  const resolvedSortBy = sortBy ?? 'name';
+  const resolvedOrder = order;
 
   const [allPets, pets] = await Promise.all([
     getPets(),
-    getPets({ species }),
+    getPets({ species, sortBy: resolvedSortBy, order: resolvedOrder }),
   ]);
 
   const speciesOptions = [...new Set(allPets.map((p) => p.species))].sort();

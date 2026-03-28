@@ -35,3 +35,24 @@
   height: 1.6rem;
   pointer-events: none;
 }
+
+.toggleButton {
+  background: transparent;
+  border: 1px solid var(--color-soft-gray);
+  border-radius: 8px;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  font-family: inherit;
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+.toggleButton:focus {
+  outline: 2px solid var(--color-vibrant-blue);
+  outline-offset: 2px;
+}
+
+.toggleButtonActive {
+  border-color: var(--color-black);
+  font-weight: 700;
+}

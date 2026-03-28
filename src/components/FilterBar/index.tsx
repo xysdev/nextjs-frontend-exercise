@@ -13,6 +13,7 @@ export function FilterBar({ speciesOptions }: FilterBarProps) {
   const searchParams = useSearchParams();
 
   const selectedSpecies = searchParams.get('species') ?? '';
+  const isLatestAdded = searchParams.get('sortBy') === 'dateAdded';
 
   const handleSpeciesChange = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -20,6 +21,18 @@ export function FilterBar({ speciesOptions }: FilterBarProps) {
       params.set('species', value);
     } else {
       params.delete('species');
+    }
+    router.push(`/?${params.toString()}`);
+  };
+
+  const handleLatestAddedToggle = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (isLatestAdded) {
+      params.delete('sortBy');
+      params.delete('order');
+    } else {
+      params.set('sortBy', 'dateAdded');
+      params.set('order', 'desc');
     }
     router.push(`/?${params.toString()}`);
   };
@@ -42,6 +55,14 @@ export function FilterBar({ speciesOptions }: FilterBarProps) {
         </select>
         <img src="/icons/chevron-down.svg" alt="" aria-hidden="true" className={styles.chevron} />
       </div>
+
+      <button
+        className={`${styles.toggleButton} ${isLatestAdded ? styles.toggleButtonActive : ''}`}
+        onClick={handleLatestAddedToggle}
+        aria-pressed={isLatestAdded}
+      >
+        Latest added
+      </button>
     </div>
   );
 }
