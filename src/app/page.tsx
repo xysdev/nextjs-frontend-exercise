@@ -1,12 +1,24 @@
+import { Suspense } from 'react';
+
 import { Card } from '@/components/Card';
 import { Container } from '@/components/Container';
+import { FilterBar } from '@/components/FilterBar';
 import { Header } from '@/components/Header';
 import { getPets } from '@/services/pets';
 
 import styles from './page.module.css';
 
-export default async function Home() {
-  const pets = await getPets();
+type SearchParams = Promise<{ species?: string }>;
+
+export default async function Home({ searchParams }: { searchParams: SearchParams }) {
+  const { species } = await searchParams;
+
+  const [allPets, pets] = await Promise.all([
+    getPets(),
+    getPets({ species }),
+  ]);
+
+  const speciesOptions = [...new Set(allPets.map((p) => p.species))].sort();
 
   return (
     <div>
@@ -14,6 +26,10 @@ export default async function Home() {
       <div className="main">
         <Container>
           <h1>Pets</h1>
+
+          <Suspense fallback={<div aria-busy="true">Loading filters…</div>}>
+            <FilterBar speciesOptions={speciesOptions} />
+          </Suspense>
 
           <h2>Results</h2>
           <div className={styles.cardContainer}>
