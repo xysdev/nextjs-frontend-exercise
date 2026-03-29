@@ -42,6 +42,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
               {pets.map((pet, index) => (
                 <Card
                   key={pet.id}
+                  id={pet.id}
                   name={pet.name}
                   photoUrl={pet.photoUrl}
                   species={pet.species}
