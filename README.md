@@ -1,87 +1,87 @@
-# Coolblue NextJS Assignment
+# Pets App
 
-In this assignment we would like you to build an amazing Pets web app using the provided mock-up designs. 🧑‍🏭
+A responsive pet adoption browsing app built with Next.js 16 (App Router), TypeScript, and CSS Modules. Browse, filter, and sort pets — with a detail page for each one.
 
-- You can use the below mentioned REST API endpoint to request the information for your application.
-- Together with this readme file we provide you with a boilerplate NextJS application. Consider this as a starting point, but don't hesitate to make improvements or changes.
+Live demo: [pets-dusky.vercel.app](https://pets-dusky.vercel.app)
 
-Carefully read the instructions before you proceed.
+## Features
 
-## Scope
+- Browse all available pets on the home page
+- Filter pets by species (Cat, Dog, etc.)
+- Sort alphabetically by name (default) or by latest added
+- Pet detail page with full information
+- Skeleton loading states on both the listing and detail pages
+- Error boundary with a retry action
+- Fully responsive — mobile and desktop layouts
+- Accessible: semantic HTML, ARIA attributes, keyboard navigable
 
-The idea of the assignment is to improve and extend the development of an app that displays different types of `pets on a filter page`.
+## Tech stack
 
-- Replace hardcoded pets with pet data fetched from the internal Next API route:
-  - GET `/api/pets`.
-  - The endpoint provides all the pets and the options to filter and to sort or order by property using query params.
-  - In other words: `/api/pets?name={value}` or `/api/pets?sortBy={property}` or `/api/pets?order=desc`
-- Implement a filter to filter pets by `species`.
-- Implement default sorting of pets alphabetically by `name`. When the "Latest added" filter is toggled, sort pets by `dateAdded` with the newest pets first.
-- Make sure that the page matches the provided [designs](#design-specifics).
-- Make sure the application works in the latest version of modern browsers.
+- [Next.js 16](https://nextjs.org/) — App Router, Server Components, API Routes
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- CSS Modules
+- [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/)
+- [pnpm](https://pnpm.io/) — package manager
+- [Vercel](https://vercel.com/) — deployment
 
-Apart from the above, we expect you to make some general improvements you think would be beneficial.
+## Project structure
 
-Useful quick-links:
+```
+src/
+  app/
+    layout.tsx           # Root layout — header, footer, fonts
+    page.tsx             # Home page — pet listing with filters
+    error.tsx            # Error boundary
+    loading.tsx          # Skeleton loading for home page
+    api/pets/            # Internal REST API (GET /api/pets, GET /api/pets/[id])
+    pets/[id]/           # Pet detail page
+  components/
+    Card/                # Pet card component
+    Container/           # Max-width layout wrapper
+    FilterBar/           # Species filter + "Latest added" toggle
+    Header/              # Site header
+  config/
+    api.ts               # Base URL resolution (local / Vercel)
+  services/
+    pets.ts              # Fetch helpers — getPets, getPetById
+  types/
+    pet.ts               # Pet TypeScript type
+```
 
-- [Next.js App Router](https://nextjs.org/docs/app)
-- [Next.js Data Fetching](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating)
+## Getting started
 
-## What we are looking for
+**Requirements:** Node 20, pnpm
 
-We would like to see your best work, so please focus on what you regard as quality work. Things we will be looking out for are among others:
+```bash
+pnpm install
+pnpm dev
+```
 
-- We’d love to see a responsive design that works well across different screen sizes.
-- Performance matters, so feel free to lean on best practices and patterns from frameworks like Next.js.
-- Please aim for an accessible application so everyone can use your app comfortably.
-- Using semantic HTML is encouraged as it helps with both accessibility and SEO.
-- We value type safety, so try using TypeScript to its strengths.
-- If you can include some tests, that would be great. We are not looking for 100% coverage, but we do want to see your approach to testing.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Design specifics
+## Environment variables
 
-Refer to the designs and specifications in the `/designs` directory for detailed information on component specifications, layout designs, color codes and font usage.
+| Variable               | Description                                                       |
+| ---------------------- | ----------------------------------------------------------------- |
+| `NEXT_PUBLIC_BASE_URL` | Full URL of the deployment (e.g. `https://pets-dusky.vercel.app`) |
 
-### Designs
+When running locally this defaults to `http://localhost:3000` and no `.env` file is needed.
 
-- [Component Specifications](./designs/Components.png)
-- [Filter Page - Desktop](./designs/Desktop_overview.png)
-- [Filter Page - Mobile](./designs/Mobile_overview.png)
+## Commands
 
-### Static assets
-
-All the required `icons and images` are added to the `./public` directory
-
-The images of all the pets are available in the `/public/images` folder.
-
-The icons are available in the `/public/icons` folder.
-
-### Colors used
-
-- Yellow: `#E0B833`
-- Blue: `#2B6DB1`
-- Dark blue: `#285DAB`
-- Gray: `#DDDDDD`
-- White: `#FFFFFF`
-- Black: `#111111`
-
-> These colors are already defined in the `globals.css` file.
-
-### Font used
-
-- `Open Sans`
-
-## Conditions
-
-Take as much time as you feel comfortable with. Based on the amount of time you spent in combination with what you handed in we'll go over your assignment and ask questions along the way. Your reasoning is the most important to us!
-
-Make sure you hand in your assignment 48 hours before the second interview! That way you give us some time to go over it too 🤓
-
-### Submission instructions
-
-Please create a zip file of the project folder (excluding the node_modules directory) and upload it to a cloud service (such as WeTransfer or Google Drive). Share the link via email with the recruiter at least 48 hours before the second interview.
-
-## Usage
+| Command              | Description                          |
+| -------------------- | ------------------------------------ |
+| `pnpm dev`           | Start development server (Turbopack) |
+| `pnpm build`         | Create production build              |
+| `pnpm start`         | Start production server              |
+| `pnpm test`          | Run unit tests                       |
+| `pnpm test:coverage` | Run tests with coverage report       |
+| `pnpm test:watch`    | Run tests in watch mode              |
+| `pnpm lint`          | Lint JS and CSS                      |
+| `pnpm lint:fix`      | Auto-fix lint errors                 |
+| `pnpm format`        | Format with Prettier                 |
+| `pnpm typecheck`     | TypeScript type check                |
 
 ### Global dependencies
 
