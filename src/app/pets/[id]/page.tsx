@@ -26,7 +26,6 @@ export default async function PetDetailPage({ params }: Props) {
 
   return (
     <div>
-      <Header />
       <main className="main">
         <Container>
           <Link href="/" className={styles.backLink} aria-label="Back to all pets">
