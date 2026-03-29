@@ -9,6 +9,9 @@
   --color-soft-gray: #ddd;
   --color-dark-gray: #a2a2a2;
   --container-width: 1100px;
+  --container-padding: 1rem;
+  --card-grid-gap: 3.2rem;
+  --card-image-mobile: 150px;
 }
 
 * {

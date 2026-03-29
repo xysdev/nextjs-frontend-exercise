@@ -3,7 +3,6 @@ import { Suspense } from 'react';
 import { Card } from '@/components/Card';
 import { Container } from '@/components/Container';
 import { FilterBar } from '@/components/FilterBar';
-import { Header } from '@/components/Header';
 import { getPets } from '@/services/pets';
 
 import styles from './page.module.css';
@@ -25,7 +24,6 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
   return (
     <div>
-      <Header />
       <main className="main">
         <Container>
           <h1>Pets</h1>
@@ -52,11 +50,6 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           )}
         </Container>
       </main>
-      <footer className={styles.footer}>
-        <Container>
-          <p className={styles.footerText}>© 1996 - 2024 ~ Pets B.V.</p>
-        </Container>
-      </footer>
     </div>
   );
 }

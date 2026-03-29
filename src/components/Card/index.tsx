@@ -15,7 +15,7 @@ export function Card({ name, photoUrl, species, priority = false }: CardProps) {
           alt={`${name} the ${species}`}
           className={styles.image}
           fill
-          sizes="(min-width: 768px) calc((var(--container-width) - 6.4rem) / 3), 150px"
+          sizes="(min-width: 768px) calc((var(--container-width) - 2 * var(--container-padding) - 2 * var(--card-grid-gap)) / 3), var(--card-image-mobile)"
           priority={priority}
         />
       </div>
