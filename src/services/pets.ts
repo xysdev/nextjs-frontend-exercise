@@ -25,3 +25,17 @@ export async function getPets(params?: PetQueryParams): Promise<Pet[]> {
 
   return res.json();
 }
+
+export async function getPetById(id: number): Promise<Pet> {
+  const res = await fetch(`${API_BASE_URL}/api/pets/${id}`, { cache: 'no-store' });
+
+  if (res.status === 404) {
+    throw new Error('NOT_FOUND');
+  }
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch pet: ${res.status} ${res.statusText}`);
+  }
+
+  return res.json();
+}

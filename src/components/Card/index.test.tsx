@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Card } from './index';
 
 const defaultProps = {
+  id: 1,
   name: 'Fluffy',
   photoUrl: '/images/fluffy.jpg',
   species: 'Cat',
